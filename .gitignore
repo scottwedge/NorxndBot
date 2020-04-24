@@ -1,0 +1,13 @@
+.idea
+__pycache__
+NorxndBot/__pycache__
+NorxndBot/Commands/__pycache__
+NorxndBot/Commands/Info/__pycache__
+NorxndBot/Events/__pycache__
+Snowy/__pycache__
+Snowy/Commands/__pycache__
+Snowy/Commands/AT/__pycache__
+Snowy/Commands/Req/__pycache__
+BotLog.json
+chat.log
+StarCodes.json
