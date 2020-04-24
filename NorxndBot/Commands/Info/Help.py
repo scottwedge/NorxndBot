@@ -32,7 +32,7 @@ class Help(commands.Cog):
             config.add_field(name="?Bruhhg", value="Add or remove Bruhhg role", inline=True)
             config.add_field(name="?Rage", value="Add or remove Rage role", inline=True)
             config.add_field(name="?Girl",
-                             value="Add or remove The Girl Gang role (Please. if you are not girl, DONT use that!)",
+                             value="Add or remove The Girl Gang role (Please. if you are not girl, DON'T use that!)",
                              inline=True)
             config.add_field(name="?NorxndBotTest", value="Add or remove yourself from NorxndBot Improve Program",
                              inline=True)
@@ -47,7 +47,7 @@ class Help(commands.Cog):
 
             other = discord.Embed(description="Rest", color=0xefbf01)
             other.add_field(name='?Commit "Flood Escape 2" "(Vip server link)"',
-                            value="Tell others you playing a game! (Use vip server link, or LAN or IP or something else!)",
+                            value="Tell others you play a game! (Use vip server link, or LAN or IP or something else!)",
                             inline=True)
             other.add_field(name="?AdminHelp", value="Only for Staff Team and above!", inline=True)
             await ctx.send(embed=other, delete_after=60)
@@ -85,7 +85,7 @@ class Help(commands.Cog):
             self.bot.BOT_LOG.append(LOG)
 
 
-# If you are starting adventure with NorxndBot, dont remove this command. Go to Roles first! If you know how to use pre-installed commands you can write own Help command!
+# If you are starting adventure with NorxndBot, don't remove this command. Go to Roles first! If you know how to use pre-installed commands you can write own Help command!
 
 
 

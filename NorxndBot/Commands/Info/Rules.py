@@ -22,7 +22,7 @@ class Rules(commands.Cog):
         # Text Example
         """""
         Help = ("Text \n"
-        "You can write in next line by taping \n"
+        "You can write in next line by typing \n"
         "Dont forget about "" !")
 
         await ctx.send(Help)
@@ -30,7 +30,7 @@ class Rules(commands.Cog):
         # Embed Example
         """
         embed=discord.Embed(title="TITLE", url="httpsTITLE URL", description="DESCRIPTION", color=HEX COLOR)
-        embed.set_author(name="AUTHOR NAME", url="AUTHOR LINK",, icon_url="AUTHOR ICON")
+        embed.set_author(name="AUTHOR NAME", url="AUTHOR LINK", icon_url="AUTHOR ICON")
         embed.set_thumbnail(url="THUMBNAIL URL")
         embed.add_field(name="FIELD NAME", value="FIELD VALUE", inline=False / True)
         embed.add_field(name="2 FIELD NAME", value="2 FIELD VALUE", inline=False / True)
@@ -39,7 +39,7 @@ class Rules(commands.Cog):
         await ctx.send(embed=embed)
         """
         # You can use await ctx.send(Help, embed=embed) !
-        # In ctx.send you can use ", delete_after=SECOUNDS" to delete bot message after a few secounds!
+        # In ctx.send you can use ", delete_after=SECONDS" to delete bot message after a few seconds!
 
         #Want to send message to specyfic channel? No problem!
         # channel = self.bot.get_channel(CHANNEL ID)

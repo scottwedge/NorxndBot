@@ -13,7 +13,7 @@ class BotLog(commands.Cog):
         self.bot = bot
         # self.BotLog_SaveLoop.start()
 
-# Saves logs to file
+# Save logs to file
 """""    
     @tasks.loop(seconds=120)
     async def BotLog_SaveLoop(self):

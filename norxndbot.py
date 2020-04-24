@@ -1,4 +1,4 @@
-Version = "0.1.0.0" # <- For version
+Version = "0.1.0.1" # <- For version
 
 import discord
 import os
@@ -17,7 +17,7 @@ bot.Version = Version # <- You will need that if you use Version
 bot.BOT_LOG = [] # <- For Bot Logs
 # bot.ftp = FTP('FTP SERVER') <- For FTP / Storage Service
 
-# You can use this loop too have a few activity!
+# You can use this loop to have a few activities!
 """"
 @tasks.loop(seconds=True)
 async def status_change_loop():
@@ -29,7 +29,7 @@ async def status_change_loop():
     await asyncio.sleep(15)
 """
 
-# If you use FTP storage, you can use it to update you bot log from file at start
+# If you use FTP storage, you can use it to update you bot log from a file at start
 """"
 def UpdateLog():
     localfile = open("LOG FILE NAME", 'wb')

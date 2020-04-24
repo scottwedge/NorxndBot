@@ -41,9 +41,9 @@ class BadWordsDetector(commands.Cog):
         BadWordsDetector.log(self, ctx)
         for b in BadWordsDetector.bot_bannedwords:
             if b in ctx.content:
-                await ctx.delete() # Delets message with bad word!
+                await ctx.delete() # Delete message with a bad word!
                 channel = self.bot.get_channel(ctx.channel.id)
-                await channel.send("MESSAGE IN CHANNEL") # Like f"Dont use bad words {ctx.author}" <- ctx.author is author of message!
+                await channel.send("MESSAGE IN CHANNEL") # Like f"Don't use bad words {ctx.author}" <- ctx.author is author of message!
                 LOG = ("MESSAGE TO LOGS")
                 print(LOG)
                 self.bot.BOT_LOG.append(LOG)

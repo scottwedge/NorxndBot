@@ -30,7 +30,7 @@ class Admin(commands.Cog):
 
         Info2 = ("There is currently no vaccine against coronavirus (COVID-19). \n"
                 "To protect yourself and others from infection with the virus: \n"
-                "Wash your hands regularly for 20 seconds with soap and water or an alcohol-based disinfectant. \n"
+                "Wash your hands regularly for 20 seconds with a soap and water or an alcohol-based disinfectant. \n"
                 "When you cough or sneeze, cover your mouth and nose with a disposable tissue or the inside of your elbow. \n"
                 "Avoid close (less than 1 meter) contact with people who feel unwell. \n"
                 "If you feel unwell, do not leave the house and isolate yourself from other household members. \n"
