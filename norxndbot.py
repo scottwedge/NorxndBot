@@ -1,4 +1,4 @@
-Version = "0.1.0.1" # <- For version
+Version = "0.1.5.0P" # Version
 
 import discord
 import os
@@ -13,71 +13,117 @@ from discord.ext import tasks
 
 bot = commands.Bot(command_prefix='PREFIX')
 
-bot.Version = Version # <- You will need that if you use Version
-bot.BOT_LOG = [] # <- For Bot Logs
-# bot.ftp = FTP('FTP SERVER') <- For FTP / Storage Service
+bot.Version = Version
+bot.BOT_LOG = []
+# bot.ftp = FTP('FTP SERVER') For FTP database
+bot.StarCodes = {}
 
-# You can use this loop to have a few activities!
-""""
-@tasks.loop(seconds=True)
+
+@tasks.loop(seconds=True) # Status change loop
 async def status_change_loop():
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name="GAME NAME"))
-    await asyncio.sleep(15) <- 15 is the time when activities change
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="MOVIE NAME"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name="?Help for commands, help and info!"), status=discord.Status.online)
     await asyncio.sleep(15)
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="SONG NAME"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"NorxndBot {Version} by Norxnd Unname"), status=discord.Status.online)
     await asyncio.sleep(15)
-"""
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="Fallow @NORXND_Unname on Twitter & Support on patron.com/norxnd"), status=discord.Status.online)
+    await asyncio.sleep(15)
 
-# If you use FTP storage, you can use it to update you bot log from a file at start
-""""
-def UpdateLog():
-    localfile = open("LOG FILE NAME", 'wb')
-    bot.ftp.retrbinary('RETR ' + "LOG FILE NAME", localfile.write, 1024)
+# Database
+
+
+"""
+For update files on bot start - Use FTP
+
+def Update():
+    # BotLog
+    localfile = open("BotLog.json", 'wb')
+    bot.ftp.retrbinary('RETR ' + "BotLog.json", localfile.write, 1024)
     localfile.close()
-    bot.BOT_LOG.append(json.load(open('LOG FILE NAME')))
+    bot.BOT_LOG.append(json.load(open('BotLog.json')))
+    # StarCodes
+    localfile = open("StarCodes.json", 'wb')
+    bot.ftp.retrbinary('RETR ' + "StarCodes.json", localfile.write, 1024)
+    localfile.close()
+    bot.StarCodes = json.load(open('StarCodes.json'))
 """
 
-# And this to upload file
-""""
-@tasks.loop(seconds=120) <- 120 is the time when the file will be uploaded
-async def UpdateLog_loop():
-    bot.ftp.storbinary('STOR ' + "LOG FILE NAME", open("LOG FILE NAME", 'rb'))
+"""
+Send files to FTP server
+
+@tasks.loop(seconds=120)
+async def Sync():
+        # BotLog
+        j = json.dumps(bot.BOT_LOG)
+        f = open('BotLog.json', 'w')
+        f.write(j)
+        f.close()
+        bot.ftp.storbinary('STOR ' + "BotLog.json", open("BotLog.json", 'rb'))
 """
 
-@bot.event # Everything you put in this function will start when the bot starts
+
+# End of database
+
+
+@bot.event
 async def on_ready():
-    # status_change_loop.start() <- Use this if you use function from 22-29 lines in this file!
-    print("MESSAGE IN TERMINAL WHEN BOT RUNS")
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name="NAME")) # You can change type to playing, watching and listening!
-    # bot.ftp.login(user='FTP USERNAME', passwd='FTP PASSWORD') <- Use only when you use FTP
-    # UpdateLog() <- Use this if you use function from 34-38 lines in this file!
-    bot.BOT_LOG.append("MESSAGE TO LOGS WHEN BOT RUNS")
-    # UpdateLog_loop.start() <- Use this if you use function from 43-45 lines in this file!
+    status_change_loop.start()
+    print("TEXT WHEN BOT START")
+
+    #bot.ftp.login(user='FTP USERNAME', passwd='FTP PASSWORD')
+    #Update()
+    bot.BOT_LOG.append("{}".format(Version))
+    #Sync.start()
 
 
-
-
-core = ['NorxndBot.Commands.Info.Help','NorxndBot.Commands.Info.Rules','NorxndBot.Commands.Info.Roles','NorxndBot.Commands.Admin','NorxndBot.Commands.CovidInfo', 'NorxndBot.Events.BadWordsDetector', 'NorxndBot.Commands.Report', 'NorxndBot.Events.BotLog'] # List of commands etc. that pre-installed!
-
-extensions = [] # You can add you own commands and functions in another file by adding it to this list!
 """
-Example:
-extension = ['Folder.Folder.File', 'Folder.Folder.File2', 'Folder.Folder2.File']
+This command will be trigger when error occurs in command! - BETA
+
+@bot.event
+async def on_command_error(ctx, error):
+    try:
+        status_change_loop.stop()
+        await bot.change_presence(status=discord.Status.idle)
+        await ctx.send(f"{ctx.author} An {error} error occurred while executing the command! ",delete_after=10)
+        await ctx.message.delete()
+        await asyncio.sleep(10)
+        status_change_loop.start()
+        LOG = f"ON COMMAND ERROR - Error: {error} Message: {ctx.message}"
+        print(LOG)
+        bot.BOT_LOG.append(LOG)
+        raise error
+    except RuntimeError:
+        print("Task isnt complate, but it was lunched again!")
 """
 
 
 
-for coreex in core: # Loader for commands etc. that pre-installed.
+
+
+
+
+core = ['NorxndBot.Commands.Info.Help','NorxndBot.Commands.Info.Rules','NorxndBot.Commands.Info.Roles','NorxndBot.Commands.Admin','NorxndBot.Commands.CovidInfo', 'NorxndBot.Events.BadWordsDetector', 'NorxndBot.Commands.Report', 'NorxndBot.Events.Welcome', 'NorxndBot.Commands.Info.Channels'] # Pre installed extensions
+
+extensions = [] # Your extensions eg. Files with functions / code / Commands.
+
+"""
+extensions = ['file', 'folder.file', 'folder.folder.file', 'folder.folder.secound file', 'secound folder.folder.file]
+"""
+
+
+
+for coreex in core: # Loader for core extensions
     bot.load_extension(coreex)
 
-for extension in extensions: # Loader for your own commands and extensions!
+for extension in extensions: # Loader for your extensions
     bot.load_extension(extension)
 
 
-
-
-bot.run('TOKEN')
-
-
-
+"""
+Often when the bot starts, there is a RuntimeError error: Event Loop is closed but but everything works normally. 
+Ignore it. Therefore, do not worry about errors I created a simple function that just 
+write a message instead of giving the whole Traceback (Error).
+"""
+try:
+    bot.run('TOKEN') # From Discord developer portal
+except RuntimeError:
+    print("There was RuntimeError: Event Loop is closed. error again!")

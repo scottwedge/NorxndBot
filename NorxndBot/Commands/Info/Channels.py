@@ -10,14 +10,13 @@ from discord.ext import tasks
 
 
 
-class Roles(commands.Cog):
+
+class Channels(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-
-
-    @commands.command(name="Roles", aliases=["ROLES", "roles"]) # Basic Information command
-    async def roles(self, ctx):
+    @commands.command(name="Channels", aliases=["CHANNELS", "channels"]) # Basic Information command
+    async def Channels(self, ctx):
         # Text Example
         """""
         Help = ("Text \n"
@@ -35,15 +34,11 @@ class Roles(commands.Cog):
         embed.set_footer(text="FOOTER TEXT")
         await ctx.send(embed=embed)
         """
-        # You can use await ctx.send(Help, embed=embed) !
-        # In ctx.send you can use ", delete_after=SECONDS" to delete bot message after a few seconds!
 
         await ctx.message.delete()
-        LOG = ("MESSAGE TO LOG")
+        LOG = ("{} used Channels command with arguments: at {}".format(ctx.author, datetime.datetime.utcnow()))
         print(LOG)
         self.bot.BOT_LOG.append(LOG)
 
-
-
 def setup(bot):
-    bot.add_cog(Roles(bot))
+    bot.add_cog(Channels(bot))

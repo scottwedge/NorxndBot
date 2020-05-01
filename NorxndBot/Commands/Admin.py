@@ -130,7 +130,6 @@ class Admin(commands.Cog):
         self.bot.BOT_LOG.append(LOG)
 
 
-
 def setup(bot):
     bot.add_cog(Admin(bot))
 

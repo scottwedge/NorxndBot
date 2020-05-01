@@ -16,15 +16,14 @@ class Rules(commands.Cog):
         self.bot = bot
 
 
-# Basic Information command
-    @commands.command(name="Rules", aliases=["RULES", "rules"])
+
+    @commands.command(name="Rules", aliases=["RULES", "rules"]) # Basic Information command
     async def Rules(self, ctx):
         # Text Example
         """""
         Help = ("Text \n"
         "You can write in next line by typing \n"
         "Dont forget about "" !")
-
         await ctx.send(Help)
         """
         # Embed Example
@@ -35,13 +34,12 @@ class Rules(commands.Cog):
         embed.add_field(name="FIELD NAME", value="FIELD VALUE", inline=False / True)
         embed.add_field(name="2 FIELD NAME", value="2 FIELD VALUE", inline=False / True)
         embed.set_footer(text="FOOTER TEXT")
-
         await ctx.send(embed=embed)
         """
         # You can use await ctx.send(Help, embed=embed) !
         # In ctx.send you can use ", delete_after=SECONDS" to delete bot message after a few seconds!
 
-        #Want to send message to specyfic channel? No problem!
+        # Want to send a message to specific channel? No problem!
         # channel = self.bot.get_channel(CHANNEL ID)
         # channel.send() <- Working the same as ctx.send!
 

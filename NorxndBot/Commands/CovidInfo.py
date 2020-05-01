@@ -14,8 +14,7 @@ class Admin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-# Special command. Info about Coronavirus! I wish you, your family, your friends and all users of this bot and their families and friends a lot of health <3 - Norxnd
-
+    # Special command. Info about Coronavirus! I wish you, your family, your friends and all users of this bot and their families and friends a lot of health <3 - Norxnd
     @commands.command(name="CovidInfo", aliases=["COVIDINFO", "covidinfo"])
     async def CovidInfo(self, ctx):
         Info = ("***--Novel 2019 Coronavirus---*** \n"

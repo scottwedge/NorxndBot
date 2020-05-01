@@ -1,19 +1,11 @@
-import discord
-import os
-import datetime
-import asyncio
-from ftplib import FTP
-import json
-import logging
-import datetime
-from discord.ext import commands
-from discord.ext import tasks
+from norxndbot import *
 
 
 
-class Raport(commands.Cog):
+class Report(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
 
 # If someone is suspicious, the user can report him
     # Report
@@ -25,7 +17,7 @@ class Raport(commands.Cog):
         await ctx.send("Report was sent!", delete_after=3)
         LOG=("LOG TEXT")
         print(LOG)
-        self.BOT_LOG.append(LOG)
+        self.bot.BOT_LOG.append(LOG)
 
 
 def setup(bot):
