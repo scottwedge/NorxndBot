@@ -83,7 +83,7 @@ class Admin(commands.Cog):
         channel = await Member.create_dm()
         await channel.send(f"MESSAGE LIKE You get alert: {args2}") # args2 is Your alert ?Alert "Text"
         await ctx.message.delete()
-        await ctx.send("Alert sended", delete_after=3) # Optional
+        await ctx.send("Alert sent", delete_after=3) # Optional
         LOG=("TEXT TO LOG") # For log I recommend f"{ctx.author} used COMMAND NAME command with arguments: {ARGUMENT 1} and {ARGUMENT 2} and {ARGUMENT 3} (If you only have ctx and self you don't must write with arguments..., if you got only one add on argument you don't have to type and) at {datetime.datetime.utcnow()}"
         print(LOG)
         self.bot.BOT_LOG.append(LOG)

@@ -92,7 +92,7 @@ async def on_command_error(ctx, error):
         bot.BOT_LOG.append(LOG)
         raise error
     except RuntimeError:
-        print("Task isnt complate, but it was lunched again!")
+        print("Task isn't complete, but it was launched again!")
 """
 
 
